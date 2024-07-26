@@ -4,7 +4,7 @@
 toggle := false
 
 ; Hotkey
-^c::ToggleColorPicker()
+^g::ToggleColorPicker()
 
 ToggleColorPicker() {
     global toggle
