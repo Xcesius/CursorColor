@@ -6,6 +6,7 @@ toggle := false
 ; Hotkey
 ^g::ToggleColorPicker()
 
+; Function to toggle the color picker on and off
 ToggleColorPicker() {
     global toggle
     toggle := !toggle
@@ -17,6 +18,7 @@ ToggleColorPicker() {
     }
 }
 
+; Function to update the color information and display it in a tooltip
 UpdateColorInfo() {
     MouseGetPos(&mouseX, &mouseY)
     color := GetProminentColor(mouseX, mouseY, 5)  ; 11x11 pixel area
@@ -24,6 +26,7 @@ UpdateColorInfo() {
     ToolTip(colorName, mouseX + 20, mouseY + 20)
 }
 
+; Function to get the most prominent color in a specified area
 GetProminentColor(centerX, centerY, size := 11) {
     colors := Map()
     offset := (size - 1) // 2
@@ -56,6 +59,7 @@ GetProminentColor(centerX, centerY, size := 11) {
     return 0  ; Return 0 if no colors were found
 }
 
+; Function to check if a color is grayish
 IsGrayish(color) {
     r := color >> 16 & 0xFF
     g := color >> 8 & 0xFF
@@ -63,6 +67,7 @@ IsGrayish(color) {
     return Abs(r - g) < 30 && Abs(g - b) < 30 && Abs(r - b) < 30
 }
 
+; Function to get the name of a color based on its RGB value
 GetColorName(RGBColor) {
     static colorMap := [
         {name: "White",  h: 0,   s: 0,   v: 100},
@@ -101,6 +106,7 @@ GetColorName(RGBColor) {
     return closestColor
 }
 
+; Function to convert RGB values to HSV
 RGBToHSV(r, g, b) {
     r /= 255, g /= 255, b /= 255
     max := (r > g) ? (r > b ? r : b) : (g > b ? g : b)
