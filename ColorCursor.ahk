@@ -28,17 +28,17 @@ UpdateColorInfo() {
 
 ; Function to get the most prominent color in a specified area
 GetProminentColor(centerX, centerY, size := 11) {
-    colors := Map()
+    static colors := Map()
+    colors.Default := 0
+    colors.Clear()
+
     offset := (size - 1) // 2
     Loop size {
         y := A_Index - 1 - offset + centerY
         Loop size {
             x := A_Index - 1 - offset + centerX
             color := PixelGetColor(x, y, "RGB")
-            if (colors.Has(color))
-                colors[color]++
-            else
-                colors[color] := 1
+            colors[color]++
         }
     }
     maxCount := 0

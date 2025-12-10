@@ -1,0 +1,3 @@
+## 2024-05-23 - [AutoHotkey Map Optimization]
+**Learning:** In hot loops within AutoHotkey v2, reusing a `static` Map object and clearing it is significantly more efficient than creating a new Map instance every iteration. Additionally, utilizing the `Default` property of the Map allows for direct incrementing `colors[color]++`, eliminating the need for a costly `if (colors.Has(color))` check, which involves function call overhead.
+**Action:** Always look for opportunities to reuse objects in `SetTimer` loops or other frequent events in AutoHotkey, and leverage `Default` values for frequency counting to avoid branching.
